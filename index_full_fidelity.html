@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotebookLM Masterclass Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .step-number-label {
+            background: #2563eb;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .prompt-box {
+            background: #0f172a;
+            color: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            position: relative;
+            margin: 1.5rem 0;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border: 1px solid #334155;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: #475569;
+        }
+
+        .best-practice-sidebar {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .bp-tag {
+            background: #fffbeb;
+            color: #92400e;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .highlight-blue {
+            color: #2563eb;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Hero Header -->
+    <header class="bg-white border-b border-slate-200 py-12 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-between">
+            <div>
+                <h1 class="text-4xl font-black text-slate-900 tracking-tight">How to use NotebookLM?</h1>
+                <p class="text-lg text-slate-500 mt-2">The official Adyogi workflow for creating L&D Masterclass material.</p>
+            </div>
+            <div class="mt-6 md:mt-0 flex space-x-3">
+                <span class="inline-flex items-center px-4 py-2 rounded-lg bg-blue-50 text-blue-700 text-sm font-semibold border border-blue-100">
+                    <i class="fas fa-file-pdf mr-2"></i> Adyogi Training v2.0
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <div class="flex flex-col lg:flex-row gap-10">
+
+            <!-- Left Column: Core Workflow -->
+            <div class="lg:w-2/3">
+
+                <!-- Step 1 -->
+                <section class="step-card">
+                    <span class="step-number-label">Step 1</span>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Create a Notebook</h2>
+                    <ul class="space-y-4 text-slate-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope-open text-blue-600 mt-1 mr-3"></i>
+                            <span>Log into Notebook LM via individual <span class="highlight-blue">Adyogi Email</span>.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-plus-circle text-blue-600 mt-1 mr-3"></i>
+                            <span>Click <span class="highlight-blue">Create a New Notebook</span>.</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Step 2 -->
+                <section class="step-card">
+                    <span class="step-number-label">Step 2</span>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Add Sources (Max 5)</h2>
+                    <div class="space-y-4 text-slate-600">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-folder-plus text-blue-600 mt-1 mr-3"></i>
+                                <span>Click on <strong>Add sources</strong>.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-file-upload text-blue-600 mt-1 mr-3"></i>
+                                <span>Upload relevant training documents like <strong>webinar, confluence, decks</strong> etc.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-globe text-blue-600 mt-1 mr-3"></i>
+                                <span>Search the web for additional sources, using a prompt:</span>
+                            </li>
+                        </ul>
+
+                        <div class="prompt-box">
+                            <button class="copy-btn" onclick="copyText('p1')">Copy Prompt</button>
+                            <span class="text-blue-400 block text-xs font-bold mb-2 uppercase">Reference Prompt</span>
+                            <p id="p1">"Share the most relevant sources in the last 6/12 months on the topic 'Scaling during GIF on Amazon' prioritise sources from Amazon."</p>
+                        </div>
+
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-search-plus text-blue-600 mt-1 mr-3"></i>
+                                <span><strong>View, Audit & Import</strong> the most relevant sources.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Step 3 -->
+                <section class="step-card">
+                    <span class="step-number-label">Step 3</span>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Create an Instruction Document</h2>
+                    <div class="space-y-4 text-slate-600">
+                        <p>Use the following Gemini Prompt to get an instruction document (Helps describe the flow, goal & tone of the deck).</p>
+
+                        <div class="prompt-box">
+                            <button class="copy-btn" onclick="copyText('p2')">Copy Prompt</button>
+                            <span class="text-blue-400 block text-xs font-bold mb-2 uppercase">Gemini Prompt</span>
+                            <p id="p2">"Act as an Industry Expert & Create a structured instruction document covering the following four sections: 1) Introduction: Topic.. 2).... 3)......., aim to Move beyond basic theory to provide a masterclass on [Topic] Ensure the tone & style: Professional, Collaborative etc."</p>
+                        </div>
+
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-file-import text-blue-600 mt-1 mr-3"></i>
+                                <span><strong>Add the Instruction document</strong> as a source in the notebook.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Step 4 -->
+                <section class="step-card border-b-4 border-b-blue-600">
+                    <span class="step-number-label">Step 4</span>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Generate the deck in Studio</h2>
+                    <div class="space-y-4 text-slate-600">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-edit text-blue-600 mt-1 mr-3"></i>
+                                <span>Click on the <strong>edit sign</strong> over the slide deck option in studio.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-list-alt text-blue-600 mt-1 mr-3"></i>
+                                <span>Click <strong>Detailed Deck</strong>.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-language text-blue-600 mt-1 mr-3"></i>
+                                <span>Choose <strong>English</strong>.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-keyboard text-blue-600 mt-1 mr-3"></i>
+                                <span><strong>Enter the prompt</strong> under: <strong>Describe the slide deck you want to create</strong>.</span>
+                            </li>
+                        </ul>
+
+                        <div class="prompt-box">
+                            <button class="copy-btn" onclick="copyText('p3')">Copy Prompt</button>
+                            <span class="text-blue-400 block text-xs font-bold mb-2 uppercase">Final Studio Prompt</span>
+                            <p id="p3">"Create a comprehensive master class Deck as an Amazon PPC Strategist. THE GOAL is To train a team of performance marketers on the End-to-End strategy for winning the Great Indian Festival (GIF), using the attached sources. Leverage the instructions attached in the sources to define the flow of the video. Ensure the video is for L&D and is detailed."</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Best Practices Content from PDF 2 -->
+            <div class="lg:w-1/3">
+                <div class="best-practice-sidebar">
+                    <h3 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                        <i class="fas fa-star text-amber-500 mr-2"></i>
+                        Best Practices
+                    </h3>
+
+                    <div class="space-y-8">
+                        <!-- Source Strategy -->
+                        <div class="space-y-3">
+                            <span class="bp-tag">Source Guidelines</span>
+                            <ul class="text-sm text-slate-600 space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                    <span>Restrict sources to a <strong>maximum of 5</strong> (~3 internal, ~2 external).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                    <span>Use <strong>Fast Research</strong> for broad topics, <strong>Deep Research</strong> for specific ones.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                    <span>In case you wish to use a part of a comprehensive source, <strong>create a note of that part and use it as a source</strong> instead of using the comprehensive source to include everything.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                                    <span><strong>Audit all sources</strong> to figure the most relevant sources for your notebook to give meaningful results.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Instruction Doc -->
+                        <div class="space-y-3">
+                            <span class="bp-tag">Instruction Essentials</span>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Add an instruction document (preferably Google Doc or Adyogi Template) outlining:
+                            </p>
+                            <div class="grid grid-cols-2 gap-2 text-[11px] font-bold uppercase text-slate-500">
+                                <div class="bg-slate-50 p-2 rounded border border-slate-100">Flow of material</div>
+                                <div class="bg-slate-50 p-2 rounded border border-slate-100">Tone & Style</div>
+                                <div class="bg-slate-50 p-2 rounded border border-slate-100">Specific Details</div>
+                                <div class="bg-slate-50 p-2 rounded border border-slate-100">Design/Format</div>
+                            </div>
+                        </div>
+
+                        <!-- Visuals -->
+                        <div class="space-y-3">
+                            <span class="bp-tag">Visuals & Graphs</span>
+                            <p class="text-sm text-slate-600">
+                                If you wish to include graphs and pictures, ensure sources include these or <strong>add a file from Canva</strong>.
+                            </p>
+                        </div>
+
+                        <!-- Final Prompt -->
+                        <div class="p-4 bg-slate-900 rounded-xl">
+                            <h4 class="text-xs font-black text-white uppercase tracking-widest mb-3 border-b border-slate-700 pb-2">Final Prompt Checklist</h4>
+                            <ul class="text-[11px] text-slate-300 space-y-2">
+                                <li class="flex justify-between"><span>Topic Name</span> <i class="fas fa-check text-blue-400"></i></li>
+                                <li class="flex justify-between"><span>Define Role (Expert/Strategist)</span> <i class="fas fa-check text-blue-400"></i></li>
+                                <li class="flex justify-between"><span>Content Length</span> <i class="fas fa-check text-blue-400"></i></li>
+                                <li class="flex justify-between"><span>Audience Definition</span> <i class="fas fa-check text-blue-400"></i></li>
+                                <li class="flex justify-between"><span>Define Objective</span> <i class="fas fa-check text-blue-400"></i></li>
+                                <li class="flex justify-between"><span>Leverage Instructions Doc</span> <i class="fas fa-check text-blue-400"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- UI Components -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 px-6 py-3 bg-slate-900 text-white rounded-full text-sm font-bold shadow-2xl opacity-0 transition-all duration-300 pointer-events-none z-50">
+        <i class="fas fa-copy mr-2 text-blue-400"></i> Prompt copied to clipboard
+    </div>
+
+    <script>
+        function copyText(id) {
+            const text = document.getElementById(id).innerText;
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0', 'translate-y-4');
+            toast.classList.add('opacity-100', '-translate-y-2');
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                toast.classList.remove('opacity-100', '-translate-y-2');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
